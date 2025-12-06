@@ -1,23 +1,27 @@
-import Student from "../model/student.model.js";
-
+import Student from '../model/student.model.js'
 export const updateStudentName = async (req, res) => {
   try {
-    const { rollNumber, newName,newEmail,newClass,newAddress,newMedium,newFees } = req.body;
+    const { rollNumber, newName, newEmail, newClass, newAddress, newMedium, newFees } = req.body;
 
-    // roll को number में convert
-    const fees = Number(newFees)
-    const roll = Number(rollNumber); 
+    const roll = Number(rollNumber);
+
+    const updateFields = {};
+
+    if (newName) updateFields.fullname = newName;
+    if (newEmail) updateFields.email = newEmail;
+    if (newClass) updateFields.classs = newClass;
+    if (newMedium) updateFields.medium = newMedium;
+    if (newAddress) updateFields.address = newAddress;
+    if (newFees !== undefined && newFees !== "") {
+      updateFields.fees = Number(newFees);
+    }
+
+    console.log("Update fields:", updateFields); 
+
     const updatedStudent = await Student.findOneAndUpdate(
-      { rollnumber: roll },                 // किसे update करना है
-      { $set: { 
-        fullname: newName ,
-        email:newEmail,
-        classs:newClass,
-        medium:newMedium,
-        address:newAddress,
-        fees:fees
-      } },      // क्या update करना है
-      { new: true }                          // updated data वापस चाहिये
+      { rollnumber: roll },
+      { $set: updateFields },
+      { new: true, runValidators: true }
     );
 
     if (!updatedStudent) {
@@ -25,12 +29,12 @@ export const updateStudentName = async (req, res) => {
     }
 
     res.status(200).json({
-      message: "Student updated successfully",
+      message: "Student updated successfully ✅",
       student: updatedStudent
     });
 
   } catch (error) {
-    res.status(500).json({ error: error.message });
-    res.status(500).json({message: 'wrong name or roll'})
+    console.log(error);
+    res.status(500).json({ message: error.message });
   }
 };
