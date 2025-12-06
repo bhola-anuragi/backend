@@ -2,11 +2,11 @@ import Student from "../model/student.model.js";
 
 export const updateStudentName = async (req, res) => {
   try {
-    const { rollNumber, newName,newEmail,newClass,newAddress,newMedium } = req.body;
+    const { rollNumber, newName,newEmail,newClass,newAddress,newMedium,newFees } = req.body;
 
     // roll को number में convert
-    const roll = Number(rollNumber);
-
+    const fees = Number(newFees)
+    const roll = Number(rollNumber); 
     const updatedStudent = await Student.findOneAndUpdate(
       { rollnumber: roll },                 // किसे update करना है
       { $set: { 
@@ -14,7 +14,8 @@ export const updateStudentName = async (req, res) => {
         email:newEmail,
         classs:newClass,
         medium:newMedium,
-        address:newAddress
+        address:newAddress,
+        fees:fees
       } },      // क्या update करना है
       { new: true }                          // updated data वापस चाहिये
     );
