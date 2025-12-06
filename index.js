@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 
 import studentRoute from './routes/student.route.js'
+import teacherRoute from './routes/addteacher.route.js'
 import getStudentRoute from './routes/findstudent.route.js'
 import removestudentRoute from './routes/removestudent.route.js'
 import adminRoute from './routes/admin.route.js'
@@ -29,6 +30,7 @@ try {
 }
 
 app.use('/student',studentRoute)
+app.use('/teacher',teacherRoute)
 app.use('/get',getStudentRoute)
 app.use('/student',removestudentRoute)
 app.use("/admin",adminRoute)
