@@ -3,11 +3,12 @@ import Teacher from "../model/teacher.model.js";
 
 export const updateTeacher = async (req, res) => {
   try {
-    const { teacherid, newName, newEmail, newPeriod, newSalary, newSubject,newPhone} = req.body;
+    const { teacherid, newName,paidsalary, newEmail, newPeriod, newSalary, newSubject,newPhone} = req.body;
     // console.log('newfees : ',newFees)
     const id = Number(teacherid);
     const phoneNo = Number(newPhone)
     const salary = Number(newSalary)
+    const newpaidsalary = Number(paidsalary)
     const updateFields = {}; 
 
     console.log(teacherid)
@@ -18,6 +19,7 @@ export const updateTeacher = async (req, res) => {
     if (salary) updateFields.salary = salary;
     if (newSubject) updateFields.subject = newSubject;
     if (phoneNo) updateFields.phone = phoneNo
+    if (paidsalary) updateFields.paidsalary = newpaidsalary
 
     // console.log(updateFields)
     const updateTeacher = await Teacher.findOneAndUpdate(
@@ -32,7 +34,7 @@ export const updateTeacher = async (req, res) => {
     }
     // console.log(object)
     res.status(200).json({
-      message: "Student updated successfully ✅",
+      message: "Teacher updated successfully ✅",
       student: updateTeacher
     });
 
