@@ -6,7 +6,9 @@ import cors from 'cors'
 import studentRoute from './routes/student.route.js'
 import teacherRoute from './routes/addteacher.route.js'
 import getStudentRoute from './routes/findstudent.route.js'
+import getTeacherRoute from './routes/findteacher.route.js'
 import removestudentRoute from './routes/removestudent.route.js'
+import removeteacherRoute from './routes/removeteacher.route.js'
 import adminRoute from './routes/admin.route.js'
 import updatestudentRoute from './routes/updatestudent.route.js'
  
@@ -32,7 +34,9 @@ try {
 app.use('/student',studentRoute)
 app.use('/teacher',teacherRoute)
 app.use('/get',getStudentRoute)
+app.use('/get',getTeacherRoute)
 app.use('/student',removestudentRoute)
+app.use('/teacher',removeteacherRoute)
 app.use("/admin",adminRoute)
 app.use("/student", updatestudentRoute);
 

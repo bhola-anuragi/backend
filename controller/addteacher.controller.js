@@ -3,7 +3,7 @@ import TeacherId from "../model/teacherid.model.js";
 
 const AddTeacher = async (req,res) => {
     try {
-        const {fullname,email,period,salary,phone,subject} = req.body
+        const {fullname,email,period,salary,phone,subject,paidsalary} = req.body
 
         const teacher = await Teacher.findOne({email})
         if(teacher){
@@ -21,7 +21,8 @@ const AddTeacher = async (req,res) => {
             salary:salary,
             teacherid:counter.seq,
             phone:phone,
-            subject:subject
+            subject:subject,
+            paidsalary:paidsalary
         })
         await createdTeacher.save()
         res.status(201).json({
@@ -34,7 +35,8 @@ const AddTeacher = async (req,res) => {
                 subject: createdTeacher.subject,
                 phone: createdTeacher.phone,
                 period: createdTeacher.period,
-                teacherid:createdTeacher.teacherid
+                teacherid:createdTeacher.teacherid,
+                paidsalary:createdTeacher.paidsalary
             },
         });
     } catch (error) {

@@ -21,7 +21,7 @@ const studentSchema = mongoose.Schema({
         
     },
     fees:{
-        type:String,
+        type:Number,
         required:true,
         
     },

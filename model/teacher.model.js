@@ -28,6 +28,9 @@ const teacherSchema = mongoose.Schema({
     period:{
         type:String,
         required:true
+    },
+    paidsalary:{
+        type: Number
     }
 
 },
