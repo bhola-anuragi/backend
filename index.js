@@ -11,6 +11,7 @@ import removestudentRoute from './routes/removestudent.route.js'
 import removeteacherRoute from './routes/removeteacher.route.js'
 import adminRoute from './routes/admin.route.js'
 import updatestudentRoute from './routes/updatestudent.route.js'
+import updateteacherRoute from './routes/updateteacher.route.js'
  
 
 dotenv.config()
@@ -39,6 +40,7 @@ app.use('/student',removestudentRoute)
 app.use('/teacher',removeteacherRoute)
 app.use("/admin",adminRoute)
 app.use("/student", updatestudentRoute);
+app.use('/teacher',updateteacherRoute)
 
 
 
