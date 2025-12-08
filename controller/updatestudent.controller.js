@@ -2,19 +2,17 @@ import Student from '../model/student.model.js'
 export const updateStudentName = async (req, res) => {
   try {
     const { rollNumber, newName, newEmail, newClass, newAddress, newMedium, newFees } = req.body;
-
+    console.log('newfees : ',newFees)
     const roll = Number(rollNumber);
 
-    const updateFields = {};
+    const updateFields = {}; 
 
-    if (newName) updateFields.fullname = newName;
+    if (newName) updateFields.fullname = newName; 
     if (newEmail) updateFields.email = newEmail;
     if (newClass) updateFields.classs = newClass;
     if (newMedium) updateFields.medium = newMedium;
     if (newAddress) updateFields.address = newAddress;
-    if (newFees !== undefined && newFees !== "") {
-      updateFields.fees = Number(newFees);
-    }
+    if (newFees) updateFields.fees = Number(newFees);
 
     console.log("Update fields:", updateFields); 
 
@@ -27,7 +25,7 @@ export const updateStudentName = async (req, res) => {
     if (!updatedStudent) {
       return res.status(404).json({ message: "Student not found" });
     }
-
+    // console.log(object)
     res.status(200).json({
       message: "Student updated successfully ✅",
       student: updatedStudent
