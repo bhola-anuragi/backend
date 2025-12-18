@@ -12,7 +12,7 @@ const studentSchema = mongoose.Schema({
     },
     address:{
         type:String,
-        required:true,
+        // required:true,
         
     },
     classs:{
@@ -35,6 +35,10 @@ const studentSchema = mongoose.Schema({
         unique: true,
         required:true
         // default:1000
+    },
+    phone: {
+        type: Number,
+        required:true
     }
 
 },

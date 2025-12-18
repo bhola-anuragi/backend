@@ -4,7 +4,7 @@ import Counter from "../model/counter.model.js";
 
 const addStudent = async(req,res) => {
     try {
-        const {fullname,email,classs,address,fees,medium} = req.body
+        const {fullname,email,classs,address,fees,medium,phone} = req.body
 
         const student = await Student.findOne({email})
 
@@ -23,6 +23,7 @@ const addStudent = async(req,res) => {
             fees:fees,
             address:address,
             medium:medium,
+            phone:phone,
             rollnumber:counter.seq,
         })
         await createdStudent.save()
@@ -37,6 +38,7 @@ const addStudent = async(req,res) => {
                 medium: createdStudent.medium,
                 address: createdStudent.address,
                 classs: createdStudent.classs,
+                phone:createdStudent.phone,
                 rollnumber:createdStudent.rollnumber
             },
         });
